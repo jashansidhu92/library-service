@@ -1,0 +1,36 @@
+import { Router } from "express";
+import {
+    getAllBooks,
+    addBook,
+    updateBook,
+    deleteBook,
+    borrowBook,
+    returnBook,
+    getRecommendations,
+} from "../controllers/bookController";
+
+const router: Router = Router();
+
+/**
+ * Define routes for book management
+ */
+router.get("/", getAllBooks);
+router.post("/", addBook);
+router.put("/:id", updateBook);
+router.delete("/:id", deleteBook);
+router.post("/:id/borrow", borrowBook);
+router.post("/:id/return", returnBook);
+router.get("/recommendations", getRecommendations);
+
+export default router;
+
+import { Router } from "express";
+import { getAllBooksController, getAvailableBooksController, getBookStatsController } from "../controllers/bookController";
+
+const router = Router();
+
+router.get("/", getAllBooksController);
+router.get("/available", getAvailableBooksController);  
+router.get("/stats", getBookStatsController);           
+
+export default router;
